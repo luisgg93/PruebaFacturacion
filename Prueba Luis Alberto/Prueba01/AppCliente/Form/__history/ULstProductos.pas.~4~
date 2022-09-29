@@ -1,0 +1,55 @@
+unit ULstProductos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Grids,
+  Vcl.DBGrids;
+
+type
+  TFLstProductos = class(TForm)
+    ListClientesGrid: TDBGrid;
+    BNuevo: TButton;
+    BModificar: TButton;
+    BEliminar: TButton;
+    DSLstProductos: TDataSource;
+    BSalir: TButton;
+    procedure BNuevoClick(Sender: TObject);
+    procedure BModificarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FLstProductos: TFLstProductos;
+
+implementation
+
+{$R *.dfm}
+
+uses ULogicaNegocio, UProducto;
+
+procedure TFLstProductos.BModificarClick(Sender: TObject);
+begin
+  LogicaNegocio.TClientes.Params.ParamByName('COD').AsString := LogicaNegocio.TLstClientesDOCUMENTO.AsString;
+  LogicaNegocio.TClientes.Open;
+  LogicaNegocio.TClientes.Edit;
+  FCliente.DBTextDocumento.Enabled := False;
+  FCliente.ShowModal;
+  LogicaNegocio.TClientes.Close;
+  ListClientesGrid.SetFocus;
+end;
+
+procedure TFLstProductos.BNuevoClick(Sender: TObject);
+begin
+  LogicaNegocio.TProductos.Open;
+  LogicaNegocio.TProductos.Insert;
+  FProducto.DBEditCodigo.Enabled := True;
+  FProducto.ShowModal;
+  LogicaNegocio.TProductos.Close;
+end;
+
+end.

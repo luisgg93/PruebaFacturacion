@@ -1,0 +1,20 @@
+*Parte 2 de la prueba Opcional
+
+*Usar DataModule Remote en la capa de logica
+
+*Usar protocolo DCOM
+
+
+*Para registrar el servidor de datos, debe ejecutar  
+
+*"Servidor de Datos/Win32/Debug/ServidorDatos.exe"
+
+*en modo administrador y presionar el boton de registrar
+
+*Luego puede abrir la aplicaci'on cliente
+
+* "App Cliente/Win32/Debug/AppCliente.exe
+
+
+	
+	

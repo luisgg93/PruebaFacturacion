@@ -1,0 +1,126 @@
+object FCliente: TFCliente
+  Left = 0
+  Top = 0
+  Caption = 'FCliente'
+  ClientHeight = 262
+  ClientWidth = 534
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 32
+    Top = 59
+    Width = 101
+    Height = 16
+    Caption = 'N'#186' Documento: '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 32
+    Top = 107
+    Width = 54
+    Height = 16
+    Caption = 'Nombre:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 32
+    Top = 155
+    Width = 64
+    Height = 16
+    Caption = 'Direcci'#243'n:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object DBTextDocumento: TDBEdit
+    Left = 139
+    Top = 56
+    Width = 158
+    Height = 24
+    DataField = 'DOCUMENTO'
+    DataSource = DSCliente
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 0
+  end
+  object DBEdit2: TDBEdit
+    Left = 139
+    Top = 104
+    Width = 254
+    Height = 24
+    CharCase = ecUpperCase
+    DataField = 'NOMBRE'
+    DataSource = DSCliente
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+  end
+  object DBEdit3: TDBEdit
+    Left = 139
+    Top = 152
+    Width = 374
+    Height = 24
+    CharCase = ecUpperCase
+    DataField = 'DIRECCION'
+    DataSource = DSCliente
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+  end
+  object Button1: TButton
+    Left = 344
+    Top = 208
+    Width = 75
+    Height = 25
+    Caption = 'Aceptar'
+    TabOrder = 3
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 438
+    Top = 208
+    Width = 75
+    Height = 25
+    Caption = 'Cancelar'
+    TabOrder = 4
+    OnClick = Button2Click
+  end
+  object DSCliente: TDataSource
+    DataSet = LogicaNegocio.TClientes
+    Left = 472
+    Top = 24
+  end
+end

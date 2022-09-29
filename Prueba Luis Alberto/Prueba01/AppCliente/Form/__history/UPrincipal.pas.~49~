@@ -1,0 +1,98 @@
+unit UPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TFPrincipal = class(TForm)
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
+    Panel2: TPanel;
+    Panel1: TPanel;
+    procedure Button1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FPrincipal: TFPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+uses ULstClientes, UAccesoDatos, ULogicaNegocio, ULstProductos, UFacturacion,
+   ULstFactura;
+
+procedure TFPrincipal.Button1Click(Sender: TObject);
+begin
+  LogicaNegocio.TLstClientes.Active := True;
+  LogicaNegocio.TLstClientes.First;
+  Application.CreateForm( TFLstClientes, FLstClientes );
+  FLstClientes.ShowModal;
+  LogicaNegocio.TLstClientes.Active := False;
+end;
+
+procedure TFPrincipal.Button2Click(Sender: TObject);
+begin
+  LogicaNegocio.TLstProductos.Active := True;
+  LogicaNegocio.TLstProductos.First;
+  Application.CreateForm( TFLstProductos, FLstProductos );
+  FLstProductos.ShowModal;
+  LogicaNegocio.TLstProductos.Active := False;
+end;
+
+procedure TFPrincipal.Button3Click(Sender: TObject);
+var
+  NUM_FACTURA: integer;
+begin
+
+  LogicaNegocio.TParametros.Open;
+  LogicaNegocio.TParametros.Locate('ID', 1, []);
+  NUM_FACTURA := LogicaNegocio.TParametrosVALUE.AsInteger+1;
+  LogicaNegocio.TParametros.Edit;
+  LogicaNegocio.TParametrosVALUE.AsInteger := NUM_FACTURA;
+  LogicaNegocio.TParametros.Post;
+
+  LogicaNegocio.TCabezaFactura.Open;
+  LogicaNegocio.TCabezaFactura.Insert;
+  LogicaNegocio.TCabezaFacturaNUM_FACT.AsString := NUM_FACTURA.ToString;
+  Application.CreateForm( TFFacturacion, FFacturacion );
+  FFacturacion.LabelNumFactura.Caption := NUM_FACTURA.ToString;
+  FFacturacion.DBFechaFacturacion.Text := formatdatetime('yyyy-mm-dd',now());
+  FFacturacion.ShowModal;
+
+  LogicaNegocio.TParametros.Close;
+  LogicaNegocio.TCabezaFactura.close;
+end;
+
+procedure TFPrincipal.Button4Click(Sender: TObject);
+begin
+  LogicaNegocio.TLstCabezaFactura.Active := True;
+  LogicaNegocio.TLstCabezaFactura.First;
+  Application.CreateForm( TFLstFacturas, FLstFacturas );
+  FLstFacturas.ShowModal;
+end;
+
+procedure TFPrincipal.FormShow(Sender: TObject);
+begin
+  AccesoDatos.Connection.Params.Database := ExtractFilePath( Application.ExeName ) + '/DataBase/Database.s3db';
+  try
+    AccesoDatos.Connection.Open;
+  except
+    raise;
+  end;
+end;
+
+end.

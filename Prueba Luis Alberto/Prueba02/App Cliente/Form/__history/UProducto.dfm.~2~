@@ -1,0 +1,76 @@
+object FProducto: TFProducto
+  Left = 0
+  Top = 0
+  Caption = 'FProducto'
+  ClientHeight = 299
+  ClientWidth = 635
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 10
+    Top = 53
+    Width = 101
+    Height = 16
+    Caption = 'N'#186' Documento: '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 10
+    Top = 75
+    Width = 101
+    Height = 16
+    Caption = 'N'#186' Documento: '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 18
+    Top = 97
+    Width = 101
+    Height = 16
+    Caption = 'N'#186' Documento: '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object DBEdit1: TDBEdit
+    Left = 144
+    Top = 80
+    Width = 121
+    Height = 21
+    TabOrder = 0
+  end
+  object DBEdit2: TDBEdit
+    Left = 144
+    Top = 120
+    Width = 121
+    Height = 21
+    TabOrder = 1
+  end
+  object DBEdit3: TDBEdit
+    Left = 144
+    Top = 160
+    Width = 121
+    Height = 21
+    TabOrder = 2
+  end
+end

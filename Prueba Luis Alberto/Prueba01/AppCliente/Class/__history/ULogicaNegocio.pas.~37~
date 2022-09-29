@@ -1,0 +1,117 @@
+unit ULogicaNegocio;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Datasnap.DBClient, Datasnap.Provider;
+
+type
+  TLogicaNegocio = class(TDataModule)
+    DSPClientes: TDataSetProvider;
+    TClientes: TClientDataSet;
+    DSPLstClientes: TDataSetProvider;
+    TLstClientes: TClientDataSet;
+    TLstClientesDOCUMENTO: TIntegerField;
+    TLstClientesNOMBRE: TWideStringField;
+    TLstClientesDIRECCION: TWideStringField;
+    TClientesDOCUMENTO: TIntegerField;
+    TClientesNOMBRE: TWideStringField;
+    TClientesDIRECCION: TWideStringField;
+    DSPProductos: TDataSetProvider;
+    TProductos: TClientDataSet;
+    DSPLstProductos: TDataSetProvider;
+    TLstProductos: TClientDataSet;
+    TProductosCODIGO: TIntegerField;
+    TProductosDESCRIPCION: TWideStringField;
+    TProductosVALOR: TFloatField;
+    TLstProductosCODIGO: TIntegerField;
+    TLstProductosDESCRIPCION: TWideStringField;
+    TLstProductosVALOR: TFloatField;
+    DSPCabezaFactura: TDataSetProvider;
+    TCabezaFactura: TClientDataSet;
+    DSPLstCabezaFactura: TDataSetProvider;
+    TLstCabezaFactura: TClientDataSet;
+    TLstCabezaFacturaNUM_FACT: TAutoIncField;
+    TLstCabezaFacturaFECHA: TWideStringField;
+    TLstCabezaFacturaDOC_CLIENTE: TIntegerField;
+    TLstCabezaFacturaNOMBRE: TWideStringField;
+    TLstCabezaFacturaDIRECCION: TWideStringField;
+    TLstCabezaFacturaTOTAL: TFloatField;
+    DSPParametros: TDataSetProvider;
+    TParametros: TClientDataSet;
+    TParametrosID: TIntegerField;
+    TParametrosTAG: TWideStringField;
+    TParametrosVALUE: TIntegerField;
+    TCabezaFacturaNUM_FACT: TIntegerField;
+    TCabezaFacturaFECHA: TWideStringField;
+    TCabezaFacturaDOC_CLIENTE: TIntegerField;
+    TCabezaFacturaNOMBRE: TWideStringField;
+    TCabezaFacturaDIRECCION: TWideStringField;
+    TCabezaFacturaTOTAL: TFloatField;
+    DSPDetalleFactura: TDataSetProvider;
+    TDetalleFactura: TClientDataSet;
+    TDetalleFacturaNUM_FACT: TIntegerField;
+    TDetalleFacturaLINEA: TAutoIncField;
+    TDetalleFacturaCOD_PRODUCTO: TIntegerField;
+    TDetalleFacturaDESCRIPCION: TWideStringField;
+    TDetalleFacturaVALOR: TFloatField;
+    TDetalleFacturaVALOR_UNIDAD: TFloatField;
+    TDetalleFacturaCANTIDAD: TIntegerField;
+    TDetalleFacturaVALOR_TOTAL: TFloatField;
+    procedure TClientesAfterPost(DataSet: TDataSet);
+    procedure TProductosAfterPost(DataSet: TDataSet);
+    procedure TLstProductosAfterDelete(DataSet: TDataSet);
+    procedure TLstClientesAfterDelete(DataSet: TDataSet);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    ErrorSQL: string;
+  end;
+
+var
+  LogicaNegocio: TLogicaNegocio;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+uses UAccesoDatos;
+
+{$R *.dfm}
+
+procedure TLogicaNegocio.TClientesAfterPost(DataSet: TDataSet);
+begin
+  if TClientes.ChangeCount > 0 then
+  begin
+    TClientes.ApplyUpdates(0);
+    TClientes.Refresh;
+
+    if TLstClientes.Active then
+      TLstClientes.Refresh;
+  end;
+end;
+
+procedure TLogicaNegocio.TLstClientesAfterDelete(DataSet: TDataSet);
+begin
+  LogicaNegocio.TLstClientes.ApplyUpdates(0);
+end;
+
+procedure TLogicaNegocio.TLstProductosAfterDelete(DataSet: TDataSet);
+begin
+  TLstProductos.ApplyUpdates(0);
+end;
+
+procedure TLogicaNegocio.TProductosAfterPost(DataSet: TDataSet);
+begin
+  if TProductos.ChangeCount > 0 then
+  begin
+    TProductos.ApplyUpdates(0);
+    TProductos.Refresh;
+
+    if TLstProductos.Active then
+      TLstProductos.Refresh;
+  end;
+end;
+
+end.

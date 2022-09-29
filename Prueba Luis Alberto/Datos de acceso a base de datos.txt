@@ -1,0 +1,7 @@
+*base de datos Mysql
+
+Servidor = b9lvmiftfmaxjeratdce-mysql.services.clever-cloud.com
+Nombre BD = b9lvmiftfmaxjeratdce
+Usuario = utqaggvdcuya9f0l
+Password = SVsHKj8HPtsqMFuiTHRU
+Puerto = 3306

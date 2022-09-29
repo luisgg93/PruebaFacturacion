@@ -1,0 +1,18 @@
+program Prueba01;
+
+uses
+  Vcl.Forms,
+  Unit1 in 'Form\Unit1.pas' {Form1},
+  UAccesoDatos in 'Class\UAccesoDatos.pas' {AccesoDatos: TDataModule},
+  ULogicaNegocio in 'Class\ULogicaNegocio.pas' {LogicaNegocio: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TAccesoDatos, AccesoDatos);
+  Application.CreateForm(TLogicaNegocio, LogicaNegocio);
+  Application.Run;
+end.

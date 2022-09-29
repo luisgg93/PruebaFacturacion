@@ -1,0 +1,59 @@
+unit UAccesoDatos;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.SQLite,
+  FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs, FireDAC.VCLUI.Wait,
+  FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, Data.DB,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, FireDAC.Comp.UI;
+
+type
+  TAccesoDatos = class(TDataModule)
+    Connection: TFDConnection;
+    Clientes: TFDQuery;
+    LstClientes: TFDQuery;
+    Productos: TFDQuery;
+    LstProductos: TFDQuery;
+    ProductosCODIGO: TIntegerField;
+    ProductosDESCRIPCION: TWideStringField;
+    ProductosVALOR: TFloatField;
+    CabezaFactura: TFDQuery;
+    LstCabezaFactura: TFDQuery;
+    DetalleFactura: TFDQuery;
+    DetalleFacturaNUM_FACT: TIntegerField;
+    DetalleFacturaLINEA: TFDAutoIncField;
+    DetalleFacturaCOD_PRODUCTO: TIntegerField;
+    DetalleFacturaDESCRIPCION: TWideStringField;
+    DetalleFacturaVALOR: TFloatField;
+    DetalleFacturaVALOR_UNIDAD: TFloatField;
+    DetalleFacturaCANTIDAD: TIntegerField;
+    DetalleFacturaVALOR_TOTAL: TFloatField;
+    FDGUIxWaitCursor1: TFDGUIxWaitCursor;
+    Parametros: TFDQuery;
+    IntegerField1: TIntegerField;
+    FDAutoIncField1: TFDAutoIncField;
+    IntegerField2: TIntegerField;
+    WideStringField1: TWideStringField;
+    FloatField1: TFloatField;
+    FloatField2: TFloatField;
+    IntegerField3: TIntegerField;
+    FloatField3: TFloatField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  AccesoDatos: TAccesoDatos;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

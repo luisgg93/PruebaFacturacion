@@ -1,0 +1,73 @@
+unit ULstProductos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Grids,
+  Vcl.DBGrids;
+
+type
+  TFLstProductos = class(TForm)
+    ListProductosGrid: TDBGrid;
+    BNuevo: TButton;
+    BModificar: TButton;
+    BEliminar: TButton;
+    DSLstProductos: TDataSource;
+    BSalir: TButton;
+    procedure BNuevoClick(Sender: TObject);
+    procedure BModificarClick(Sender: TObject);
+    procedure BEliminarClick(Sender: TObject);
+    procedure BSalirClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FLstProductos: TFLstProductos;
+
+implementation
+
+{$R *.dfm}
+
+uses ULogicaNegocio, UProducto;
+
+procedure TFLstProductos.BEliminarClick(Sender: TObject);
+begin
+  with LogicaNegocio.TLstProductos do
+    if RecordCount > 0 then
+      if Application.MessageBox('¿Desea eliminar este Producto?', 'Alerta',
+        MB_ICONQUESTION or MB_YESNO ) = ID_YES then
+        Delete;
+
+  ListProductosGrid.SetFocus;
+end;
+
+procedure TFLstProductos.BModificarClick(Sender: TObject);
+begin
+  LogicaNegocio.TProductos.Params.ParamByName('COD').AsString := LogicaNegocio.TLstProductosCODIGO.AsString;
+  LogicaNegocio.TProductos.Open;
+  LogicaNegocio.TProductos.Edit;
+  FProducto.DBEditCodigo.Enabled := False;
+  FProducto.ShowModal;
+  LogicaNegocio.TProductos.Close;
+  ListProductosGrid.SetFocus;
+end;
+
+procedure TFLstProductos.BNuevoClick(Sender: TObject);
+begin
+  LogicaNegocio.TProductos.Open;
+  LogicaNegocio.TProductos.Insert;
+  FProducto.DBEditCodigo.Enabled := True;
+  FProducto.ShowModal;
+  LogicaNegocio.TProductos.Close;
+end;
+
+procedure TFLstProductos.BSalirClick(Sender: TObject);
+begin
+  Close;
+end;
+
+end.

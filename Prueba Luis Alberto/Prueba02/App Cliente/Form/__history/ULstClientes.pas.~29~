@@ -1,0 +1,104 @@
+unit ULstClientes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.StdCtrls;
+
+type
+  TFLstClientes = class(TForm)
+    BNuevo: TButton;
+    BModificar: TButton;
+    BEliminar: TButton;
+    DSLstClientes: TDataSource;
+    BSalir: TButton;
+    Panel2: TPanel;
+    Panel1: TPanel;
+    Label1: TLabel;
+    ListClientesGrid: TDBGrid;
+    Button1: TButton;
+    procedure BNuevoClick(Sender: TObject);
+    procedure BModificarClick(Sender: TObject);
+    procedure BEliminarClick(Sender: TObject);
+    procedure BSalirClick(Sender: TObject);
+    procedure ListClientesGridDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FLstClientes: TFLstClientes;
+
+implementation
+
+{$R *.dfm}
+
+uses ULogicaNegocio, UCliente;
+
+procedure TFLstClientes.BEliminarClick(Sender: TObject);
+begin
+  with LogicaNegocio.TLstClientes do
+    if RecordCount > 0 then
+      if Application.MessageBox('¿Desea eliminar este cliente?', 'Alerta',
+        MB_ICONQUESTION or MB_YESNO ) = ID_YES then
+        Delete;
+
+
+  LogicaNegocio.TLstClientes.ApplyUpdates(0);
+  ListClientesGrid.SetFocus;
+end;
+
+procedure TFLstClientes.BModificarClick(Sender: TObject);
+begin
+  LogicaNegocio.TClientes.Params.ParamByName('DOCU').AsInteger := LogicaNegocio.TLstClientesDOCUMENTO.AsInteger;
+  LogicaNegocio.TClientes.Open;
+  LogicaNegocio.TClientes.Edit;
+  Application.CreateForm( TFCliente, FCliente );
+  FCliente.DBTextDocumento.Enabled := False;
+  FCliente.ShowModal;
+  LogicaNegocio.TClientes.Close;
+  ListClientesGrid.SetFocus;
+end;
+
+procedure TFLstClientes.BNuevoClick(Sender: TObject);
+begin
+  LogicaNegocio.TClientes.Open;
+  LogicaNegocio.TClientes.Insert;
+  Application.CreateForm( TFCliente, FCliente );
+  FCliente.DBTextDocumento.Enabled := True;
+  FCliente.ShowModal;
+  LogicaNegocio.TClientes.Close;
+end;
+
+procedure TFLstClientes.BSalirClick(Sender: TObject);
+begin
+  close;
+end;
+
+procedure TFLstClientes.Button1Click(Sender: TObject);
+begin
+  ShowMessage(LogicaNegocio.ErrorSQL);
+end;
+
+procedure TFLstClientes.ListClientesGridDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  if ( ListClientesGrid.SelectedRows.CurrentRowSelected ) then
+  begin
+      ListClientesGrid.Canvas.Brush.Color := $00FFD199;
+       ListClientesGrid.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+  end;
+  if (gdSelected in State) then
+  begin
+     ListClientesGrid.Canvas.Brush.Color := $00FFD199;
+     ListClientesGrid.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+  end
+end;
+
+end.

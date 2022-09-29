@@ -1,0 +1,131 @@
+object FLstProductos: TFLstProductos
+  Left = 0
+  Top = 0
+  Caption = 'FLstProductos'
+  ClientHeight = 435
+  ClientWidth = 704
+  Color = clWhite
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label4: TLabel
+    Left = 8
+    Top = 56
+    Width = 194
+    Height = 25
+    Caption = 'Lista de Productos'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -21
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object ListProductosGrid: TDBGrid
+    Left = 8
+    Top = 112
+    Width = 673
+    Height = 217
+    DataSource = DSLstProductos
+    Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    ReadOnly = True
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'CODIGO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DESCRIPCION'
+        Width = 400
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'VALOR'
+        Width = 100
+        Visible = True
+      end>
+  end
+  object BNuevo: TButton
+    Left = 363
+    Top = 335
+    Width = 75
+    Height = 25
+    Caption = 'Nuevo'
+    TabOrder = 1
+    OnClick = BNuevoClick
+  end
+  object BModificar: TButton
+    Left = 444
+    Top = 335
+    Width = 75
+    Height = 25
+    Caption = 'Modificar'
+    TabOrder = 2
+    OnClick = BModificarClick
+  end
+  object BEliminar: TButton
+    Left = 525
+    Top = 335
+    Width = 75
+    Height = 25
+    Caption = 'Eliminar'
+    TabOrder = 3
+    OnClick = BEliminarClick
+  end
+  object BSalir: TButton
+    Left = 606
+    Top = 335
+    Width = 75
+    Height = 25
+    Caption = 'Salir'
+    TabOrder = 4
+    OnClick = BSalirClick
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 0
+    Width = 704
+    Height = 33
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 4616993
+    ParentBackground = False
+    TabOrder = 5
+    ExplicitLeft = -66
+    ExplicitWidth = 696
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 402
+    Width = 704
+    Height = 33
+    Align = alBottom
+    BevelOuter = bvNone
+    Color = 4616993
+    ParentBackground = False
+    TabOrder = 6
+    ExplicitLeft = -66
+    ExplicitTop = 358
+    ExplicitWidth = 696
+  end
+  object DSLstProductos: TDataSource
+    DataSet = LogicaNegocio.TLstProductos
+    Left = 110
+    Top = 336
+  end
+end

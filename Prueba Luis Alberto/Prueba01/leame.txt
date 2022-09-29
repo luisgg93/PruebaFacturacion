@@ -1,0 +1,5 @@
+Parte 1
+
+*Crear las tablas del modelo de entidad
+
+*Construir un programa que permita insertar, modificar,eliminar y consultar filas

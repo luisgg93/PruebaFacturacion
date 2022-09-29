@@ -1,0 +1,71 @@
+object FPrincipal: TFPrincipal
+  Left = 0
+  Top = 0
+  Caption = 'FPrincipal'
+  ClientHeight = 223
+  ClientWidth = 448
+  Color = clWhite
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 96
+    Top = 88
+    Width = 212
+    Height = 29
+    Caption = 'Servidor de Datos'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -24
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 0
+    Width = 448
+    Height = 33
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 4616993
+    ParentBackground = False
+    TabOrder = 0
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 190
+    Width = 448
+    Height = 33
+    Align = alBottom
+    BevelOuter = bvNone
+    Color = 4616993
+    ParentBackground = False
+    TabOrder = 1
+  end
+  object Button1: TButton
+    Left = 272
+    Top = 159
+    Width = 75
+    Height = 25
+    Caption = 'Registrar'
+    TabOrder = 2
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 365
+    Top = 159
+    Width = 75
+    Height = 25
+    Caption = 'Eliminar'
+    TabOrder = 3
+    OnClick = Button2Click
+  end
+end

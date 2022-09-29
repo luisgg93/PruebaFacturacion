@@ -1,0 +1,29 @@
+object FPrincipal: TFPrincipal
+  Left = 0
+  Top = 0
+  Caption = 'FPrincipal'
+  ClientHeight = 270
+  ClientWidth = 596
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 160
+    Top = 112
+    Width = 273
+    Height = 29
+    Caption = 'Servidor de Datos'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -24
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+end

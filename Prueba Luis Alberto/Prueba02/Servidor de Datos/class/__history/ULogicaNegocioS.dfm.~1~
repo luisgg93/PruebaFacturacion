@@ -1,0 +1,5 @@
+object ServidorDCOM: TServidorDCOM
+  OldCreateOrder = False
+  Height = 368
+  Width = 504
+end

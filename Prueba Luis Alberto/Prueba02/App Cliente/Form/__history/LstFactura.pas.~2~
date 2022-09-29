@@ -1,0 +1,32 @@
+unit LstFactura;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Grids,
+  Vcl.DBGrids, Vcl.ExtCtrls;
+
+type
+  TFLstFacturas = class(TForm)
+    Panel2: TPanel;
+    DSLstFacturas: TDataSource;
+    Label1: TLabel;
+    ListClientesGrid: TDBGrid;
+    BVisualizar: TButton;
+    BSalir: TButton;
+    Panel1: TPanel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FLstFacturas: TFLstFacturas;
+
+implementation
+
+{$R *.dfm}
+
+end.
